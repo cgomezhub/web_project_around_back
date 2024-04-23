@@ -19,9 +19,14 @@ app.use(cors());
 app.options('*', cors());
 
 mongoose
-  .connect('mongodb://localhost:27017/aroundb')
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('Failed to connect to MongoDB', err));
+
+// mongoose
+//   .connect('mongodb://localhost:27017/aroundb')
+//   .then(() => console.log('Connected to MongoDB'))
+//   .catch((err) => console.error('Failed to connect to MongoDB', err));
 
 /* 3. Puebas de caida del servidor
 
