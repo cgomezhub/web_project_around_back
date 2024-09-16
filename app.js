@@ -18,26 +18,27 @@ app.use(requestLogger);
 app.use(cors());
 app.options('*', cors());
 
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error('Failed to connect to MongoDB', err));
-
+// mongo en atlas mongodb: mongodb://localhost:27017/aroundb
 // mongoose
-//   .connect('mongodb://localhost:27017/aroundb')
+//   .connect(process.env.MONGODB_URI)
 //   .then(() => console.log('Connected to MongoDB'))
 //   .catch((err) => console.error('Failed to connect to MongoDB', err));
+
+// mongo en local mongodb://localhost:27017/aroundb
+
+mongoose
+  .connect('mongodb://127.0.0.1:27017/aroundb')
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((err) => console.error('Failed to connect to MongoDB', err));
 
 /* 3. Puebas de caida del servidor
 
 app.get('/crash-test', () => {
-  setTimeout(() => {
+  setTimeout(() => {  npm install --save-dev @types/express @types/cors
     throw new Error('El servidor va a caer');
   }, 0);
 });
-
 */
-
 // 4. Rutas
 app.post('/signup', createUser);
 app.post('/signin', login);
